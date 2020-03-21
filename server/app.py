@@ -3,9 +3,9 @@ import os
 import numpy as np
 import joblib
 
-loaded_model=joblib.load("./pkl_objects/model.pkl")
-loaded_stop=joblib.load("./pkl_objects/stopwords.pkl")
-loaded_vec=joblib.load("./pkl_objects/vectorizer.pkl")
+loaded_model=joblib.load("./model8202/pkl_objects/model.pkl")
+loaded_stop=joblib.load("./model8202/pkl_objects/stopwords.pkl")
+loaded_vec=joblib.load("./model8202/pkl_objects/vectorizer.pkl")
 
 def classify(document):
     X = loaded_vec.transform([document])

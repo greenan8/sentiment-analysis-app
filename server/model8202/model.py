@@ -6,11 +6,11 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 
-#This version uses a kaggle dataset to create a much better model.
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
-df = pd.read_csv(os.getcwd() + '\model\comments-kaggle.csv')
-df_test = pd.read_csv(os.getcwd() + '\model\comments.csv')
+df_kaggle = pd.read_csv(dir_path + '/comments-kaggle.csv')
+df_case = pd.read_csv(dir_path + '/comments.csv')
 
 
 # init Objects
@@ -28,14 +28,16 @@ def getStemmedReview(review):
     clean_review=' '.join(stemmed_tokens)
     return clean_review
 
-df['Comment'].apply(getStemmedReview)
-df_test['Comment'].apply(getStemmedReview)
+df_kaggle['Comment'].apply(getStemmedReview)
+df_case['Comment'].apply(getStemmedReview)
 
+df = pd.concat([df_kaggle, df_case])
+split = len(df)*7//10
 
-X_train = df.loc[:, 'Comment'].values
-y_train = df.loc[:, 'Sentiment'].values
-X_test = df_test.loc[:, 'Comment'].values
-y_test = df_test.loc[:, 'Sentiment'].values
+X_train = df.loc[:split, 'Comment'].values
+y_train = df.loc[:split, 'Sentiment'].values
+X_test = df.loc[split:, 'Comment'].values
+y_test = df.loc[split:, 'Sentiment'].values
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(sublinear_tf=True, encoding='utf-8', decode_error='ignore')
@@ -54,6 +56,6 @@ print('Score on testing data is: '+str(model.score(X_test,y_test)))
 print(model.predict_proba(X_train[1]))
 
 from sklearn.externals import joblib
-joblib.dump(en_stopwords,'pkl_objects/stopwords.pkl') 
-joblib.dump(model,'pkl_objects/model.pkl')
-joblib.dump(vectorizer,'pkl_objects/vectorizer.pkl')
+joblib.dump(en_stopwords, dir_path + '/pkl_objects/stopwords.pkl') 
+joblib.dump(model, dir_path + '/pkl_objects/model.pkl')
+joblib.dump(vectorizer, dir_path + '/pkl_objects/vectorizer.pkl')
