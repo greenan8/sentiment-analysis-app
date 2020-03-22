@@ -1,3 +1,4 @@
 notes.txt
 /server/env/*
 /app/*
+.vue.config.js
