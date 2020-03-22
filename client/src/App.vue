@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Home />
+    <Home @open-dashboard="openDashboard" v-if="!dashboardSelected" />
     <Dashboard v-if="dashboardSelected" />
   </div>
 </template>
@@ -19,6 +19,11 @@ export default {
     return {
       dashboardSelected: false
     };
+  },
+  methods: {
+    openDashboard: function() {
+      this.dashboardSelected = true;
+    }
   }
 };
 </script>
