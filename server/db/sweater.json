@@ -1,0 +1,53 @@
+{
+  "January 6th 2020": {
+    "comments": [
+      {
+        "id": 1,
+        "date": "2020-01-07",
+        "comment": "This sweater sucks!",
+        "sentiment": 0,
+        "percentage": "61.3%"
+      },
+      {
+        "id": 2,
+        "date": "2020-05-13",
+        "comment": "This sweater rocks!",
+        "sentiment": 1,
+        "percentage": "87.3%"
+      },
+      {
+        "id": 3,
+        "date": "2020-01-07",
+        "comment": "This sweater sucks!",
+        "sentiment": 0,
+        "percentage": "61.3%"
+      },
+      {
+        "id": 4,
+        "date": "2020-05-13",
+        "comment": "This sweater rocks!",
+        "sentiment": 1,
+        "percentage": "87.3%"
+      },
+      {
+        "id": 5,
+        "date": "2020-01-07",
+        "comment": "This sweater sucks!",
+        "sentiment": 0,
+        "percentage": "61.3%"
+      },
+      {
+        "id": 6,
+        "date": "2020-05-13",
+        "comment": "This sweater rocks!",
+        "sentiment": 1,
+        "percentage": "87.3%"
+      }
+    ],
+    "sentiment": 1,
+    "percentage": "61%",
+    "posWords": ["Color", "Size", "Shape"],
+    "negWords": ["Fabric", "Quality", "Smell"]
+  },
+  "January 13th 2020": {}
+}

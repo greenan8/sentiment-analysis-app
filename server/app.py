@@ -17,9 +17,9 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 
 
 #returns the comments from fake database
-@app.route('/api/comments/sweater', methods=['GET'])
+@app.route('/api/sweater', methods=['GET'])
 def comments_sweater_get():
-    return jsonify(json.load(open('./comments/sweater.json')))
+    return jsonify(json.load(open('./db/sweater.json')))
 
 #returns sentiment analysis results for given comment form a form
 @app.route('/api/classify', methods=['POST'])
