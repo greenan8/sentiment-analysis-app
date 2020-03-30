@@ -76,6 +76,29 @@
               </div>
             </div>
           </div>
+          <div id="sales" class="card">
+            <h1 class="title is-size-3 has-text-centered">
+              Sales
+            </h1>
+            <div class="columns">
+              <div class="card column">
+                <h2 class="title is-size-4 has-text-centered">
+                  Sales This Week
+                </h2>
+                <h1 class="title is-size-2 has-text-centered has-text-primary">
+                  {{ db[weekSelected].sales }}
+                </h1>
+              </div>
+              <div class="card column">
+                <h2 class="title is-size-4 has-text-centered">
+                  Project Sales Next Week
+                </h2>
+                <h1 class="title is-size-2 has-text-centered has-text-primary">
+                  {{ db[weekSelected].projectSales }}
+                </h1>
+              </div>
+            </div>
+          </div>
           <div id="graph" class="card">
             <b-tabs size="is-large" position="is-centered" class="block">
               <b-tab-item label="Sales Chart"
@@ -285,7 +308,7 @@ export default {
     margin-left: 3rem;
   }
   #comments {
-    height: 87%;
+    height: 89.3%;
     padding: 0.5rem;
     overflow-x: hidden;
     overflow-y: scroll;

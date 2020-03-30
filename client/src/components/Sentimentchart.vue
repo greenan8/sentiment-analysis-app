@@ -56,7 +56,7 @@ export default {
         return db[keyA].week - db[keyB].week;
       });
       keys.forEach(key => {
-        let p = parseInt(db[key].percentage);
+        let p = parseInt(db[key].percentage) / 100;
         db[key].sentiment ? s.push(p) : s.push(-p);
       });
       return s;
