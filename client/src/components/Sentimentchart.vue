@@ -23,7 +23,7 @@ export default {
     return {
       chartOptions: {
         chart: {
-          id: 'sales-line'
+          id: 'sentiment-line'
         },
         xaxis: {
           categories: this.getCategories()
@@ -31,7 +31,7 @@ export default {
       },
       series: [
         {
-          name: 'Sales',
+          name: 'Sentiment',
           data: this.getSeries()
         }
       ]
@@ -56,7 +56,8 @@ export default {
         return db[keyA].week - db[keyB].week;
       });
       keys.forEach(key => {
-        s.push(db[key].sales);
+        let p = parseInt(db[key].percentage);
+        db[key].sentiment ? s.push(p) : s.push(-p);
       });
       return s;
     }

@@ -17,7 +17,7 @@
       </template>
     </b-navbar>
 
-    <div class="container is-fullhd">
+    <div class="container is-fullhd" v-if="axiosDone">
       <h1 id="product" class="title">
         {{ product.charAt(0).toUpperCase() + product.slice(1) }}
       </h1>
@@ -78,11 +78,50 @@
           </div>
           <div id="graph" class="card">
             <b-tabs size="is-large" position="is-centered" class="block">
-              <b-tab-item label="Sales Chart"><Saleschart /></b-tab-item>
-              <b-tab-item label="Sentiment Chart"></b-tab-item>
+              <b-tab-item label="Sales Chart"
+                ><Saleschart :db="db"
+              /></b-tab-item>
+              <b-tab-item label="Sentiment Chart"
+                ><Sentimentchart :db="db"
+              /></b-tab-item>
             </b-tabs>
           </div>
-          <div id="input" class="card"></div>
+          <div id="input" class="card">
+            <h1 class="title is-size-3 has-text-centered">
+              Analyze a Comment
+            </h1>
+            <b-field label="">
+              <b-input
+                type="textarea"
+                @change="clearResult"
+                v-model="analyzeInput"
+              ></b-input>
+            </b-field>
+
+            <b-field
+              ><!-- Label left empty for spacing -->
+              <p class="control">
+                <button
+                  class="button is-primary is-medium"
+                  @click="getResult()"
+                >
+                  Send Comment
+                </button>
+              </p>
+              <h2
+                v-if="analyzeResult && analyzeResult.sentiment == 'Positive'"
+                class="title is-size-4 has-text-right has-text-success result"
+              >
+                {{ (analyzeResult.prob * 100).toFixed(2) + '% Positive' }}
+              </h2>
+              <h2
+                v-if="analyzeResult && analyzeResult.sentiment == 'Negative'"
+                class="title is-size-4 has-text-right has-text-danger result"
+              >
+                {{ (analyzeResult.prob * 100).toFixed(2) + '% Negative' }}
+              </h2>
+            </b-field>
+          </div>
         </div>
         <div class="column is-one-third">
           <div id="week" class="card">
@@ -137,10 +176,12 @@
 <script>
 import axios from 'axios';
 import Saleschart from './Saleschart.vue';
+import Sentimentchart from './Sentimentchart.vue';
 export default {
   name: 'Dashboard',
   components: {
-    Saleschart
+    Saleschart,
+    Sentimentchart
   },
   props: {
     product: parent.product
@@ -148,7 +189,10 @@ export default {
   data() {
     return {
       db: {},
-      weekSelected: 'January 6th 2020'
+      axiosDone: false,
+      weekSelected: 'January 6th 2020',
+      analyzeInput: null,
+      analyzeResult: null
     };
   },
   mounted() {
@@ -159,13 +203,17 @@ export default {
       this.$emit('close-dashboard');
     },
     weeks() {
-      return Object.keys(this.db).reverse();
+      let db = this.db;
+      return Object.keys(db).sort(function(keyA, keyB) {
+        return db[keyA].week - db[keyB].week;
+      });
     },
     loadData(reload) {
       axios
         .get('http://localhost:5000/api/'.concat(this.product))
         .then(res => {
           this.db = res.data;
+          this.axiosDone = true;
           reload ? this.$buefy.toast.open('Connected Successfully') : null;
         })
         .catch(err => {
@@ -192,6 +240,26 @@ export default {
         cancelText: 'Return Home',
         onCancel: () => this.closeDashboard()
       });
+    },
+    clearResult() {
+      this.analyzeResult = null;
+    },
+    getResult() {
+      axios
+        .post(
+          'http://localhost:5000/api/classify',
+          { text: this.analyzeInput },
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+        .then(res => (this.analyzeResult = res.data))
+        .catch(err => {
+          this.analyzeResult = 'Error';
+          console.log(err);
+        });
     }
   }
 };
@@ -217,12 +285,15 @@ export default {
     margin-left: 3rem;
   }
   #comments {
-    height: 60%;
+    height: 87%;
     padding: 0.5rem;
     overflow-x: hidden;
     overflow-y: scroll;
   }
   #input {
+    .result {
+      width: 75%;
+    }
   }
 }
 </style>

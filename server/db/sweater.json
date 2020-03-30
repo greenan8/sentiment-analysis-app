@@ -46,8 +46,24 @@
     ],
     "sentiment": 1,
     "percentage": "61%",
+    "sales": 170,
     "posWords": ["Color", "Size", "Shape"],
-    "negWords": ["Fabric", "Quality", "Smell"]
+    "negWords": ["Fabric", "Quality", "Smell"],
+    "shortform": "2020-01-06",
+    "week": 2
   },
-  "January 13th 2020": {}
+  "January 13th 2020": {
+    "sentiment": 1,
+    "percentage": "71%",
+    "sales": 200,
+    "shortform": "2020-01-13",
+    "week": 3
+  },
+  "January 20th 2020": {
+    "sentiment": 0,
+    "percentage": "67%",
+    "sales": 10,
+    "shortform": "2020-01-20",
+    "week": 4
+  }
 }

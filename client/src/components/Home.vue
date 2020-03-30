@@ -17,7 +17,7 @@
             type="search"
             rounded
             icon="magnify"
-            size="is-medium"
+            size="is-large"
             v-model="search"
           >
           </b-input>
@@ -74,15 +74,13 @@ export default {
 };
 </script>
 
-// show: function(this.search){ return !search ||
-p.name.startsWith(search.toLowerCase())
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 #home {
   nav {
     .navbar-end .search {
       margin-right: 3vw;
-      width: 42vw;
+      width: 35vw;
     }
     .field {
       width: 100%;

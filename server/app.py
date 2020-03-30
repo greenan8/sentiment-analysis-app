@@ -24,9 +24,10 @@ def comments_sweater_get():
 #returns sentiment analysis results for given comment form a form
 @app.route('/api/classify', methods=['POST'])
 def classify_post():
-    if request.form['text'] and len(request.form['text']) > 0:
-        sent, prob = classify(request.form['text'])
-        return jsonify({'sent': sent, 'prob': prob})
+    input = request.get_json().get('text')
+    if input and len(input) > 0:
+        sent, prob = classify(input)
+        return jsonify({'sentiment': sent, 'prob': prob})
     else:
         return jsonify({'error', 'There was an error with your request'})
 
