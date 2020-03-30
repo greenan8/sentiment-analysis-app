@@ -233,14 +233,15 @@ export default {
     },
     loadData(reload) {
       axios
-        .get('http://localhost:5000/api/'.concat(this.product))
+        .get(
+          'http://andrewgreenan.pythonanywhere.com/api/'.concat(this.product)
+        )
         .then(res => {
           this.db = res.data;
           this.axiosDone = true;
           reload ? this.$buefy.toast.open('Connected Successfully') : null;
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
           this.errored();
         });
     },
@@ -270,7 +271,7 @@ export default {
     getResult() {
       axios
         .post(
-          'http://localhost:5000/api/classify',
+          'http://andrewgreenan.pythonanywhere.com/api/classify',
           { text: this.analyzeInput },
           {
             headers: {
@@ -279,9 +280,8 @@ export default {
           }
         )
         .then(res => (this.analyzeResult = res.data))
-        .catch(err => {
+        .catch(() => {
           this.analyzeResult = 'Error';
-          console.log(err);
         });
     }
   }
