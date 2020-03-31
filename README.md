@@ -83,7 +83,7 @@ X_test=vectorizer.transform(X_test)
 ```
 
 __step 5__: Create a model
-•	https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+* https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
 ```python
 from sklearn.linear_model import LogisticRegression
 model=LogisticRegression(solver='liblinear')
@@ -92,8 +92,8 @@ print('Score on training data is: '+str(model.score(X_train,y_train)))
 print('Score on testing data is: '+str(model.score(X_test,y_test)))
 ```
 __step 6__: Model persistence
-•	Save model as pickle files for use from our web applicaiton
-•	https://docs.python.org/3.7/library/pickle.html
+* Save model as pickle files for use from our web applicaiton
+* https://docs.python.org/3.7/library/pickle.html
 ```python
 from sklearn.externals import joblib
 joblib.dump(en_stopwords, dir_path + '/pkl_objects/stopwords.pkl') 
@@ -101,20 +101,20 @@ joblib.dump(model, dir_path + '/pkl_objects/model.pkl')
 joblib.dump(vectorizer, dir_path + '/pkl_objects/vectorizer.pkl')
 ```
 ### Model 300: ###
-__Method for labeling:__
+#### Method for labeling: ####
 We labeled the 300 case provided reviews as either positive or negative. When reviews had both sentiments, we labeled it to whichever side it leaned more heavily towards. For future consideration is creating a model on sentiment rank (example from -1 to 1, where 0 is neutral).	
-__Splitting data:__
+#### Splitting data: ####
 We trained the model on a 70/30 random split.
 
 ### Model 8202+300: ###
-__Sourcing Data:__
+#### Sourcing Data: ####
 The more data to learn from, the more accurate a model can be. We sourced ecommerce review data.
 * Source: https://www.kaggle.com/nicapotato/womens-ecommerce-clothing-review
-__Method for labeling:__
+#### Method for labeling: ####
 Each review included a recommend Boolean. Those who recommended had a higher rating and mor positive comment. We used this Boolean to categorize as positive or negative
-__Selecting Data:__
+#### Selecting Data: ####
 First removed all blank reviews. Then separated into positive and negative. Included 4,101 negative reviews and over 18,000 positive reviews. So selected all 4,101 negative reviews and a random 4,101 positive reviews.
-__Splitting data:__
+#### Splitting data: ####
 We trained the model on a 70/30 random split with all training data coming from the Kaggle data and the test data consisting of the Kaggle data and 300 case data.
 
 ## Author(s) ##
