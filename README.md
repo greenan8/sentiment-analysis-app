@@ -1,8 +1,8 @@
-# COMM 493 Sentiment Analysis APP
+# COMM 493 Sentiment Analysis App
 Utilizing customer review data, constructed a MVP fullstack dashboard for Urban Closet, a fictious fast fashion retailer.
 
 ## Live App ##
-https://comm493-sentiment-analysis-app.herokuapp.com/
+https://urban-closet.herokuapp.com/
 
 ## Objectives ##
 #### Completed Objectives #### 
