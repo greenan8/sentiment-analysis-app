@@ -5,8 +5,10 @@ Utilizing customer review data, constructed a MVP fullstack dashboard for Urban 
 #### Completed Objectives #### 
 * Developed a Sentiment Analysis model with Python.
   - Read about how we developed our model [here](server/model8202/MODELNOTES.md).
-* Constructed a simple Flask server that served results from a sentiment analysis request to the model and data from json file acting as the database.
-* Implemented a Vue.js frontend application acting as a MVP, displaying how review and sentiment can be used to gain business insights.
+* Constructed a simple Flask server. 
+  - Serves JSON formatted review data.
+  - Includes post route which runs a provided string through the sentiment model.
+* Implemented a Vue.js frontend application.
 
 ## Technology Stack ##
 #### Server: Flask ####
