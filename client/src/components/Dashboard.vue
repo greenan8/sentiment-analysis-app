@@ -234,7 +234,9 @@ export default {
     loadData(reload) {
       axios
         .get(
-          'http://andrewgreenan.pythonanywhere.com/api/'.concat(this.product)
+          'https://comm493-sentiment-analysis-app.herokuapp.com/api/'.concat(
+            this.product
+          )
         )
         .then(res => {
           this.db = res.data;
@@ -271,7 +273,7 @@ export default {
     getResult() {
       axios
         .post(
-          'http://andrewgreenan.pythonanywhere.com/api/classify',
+          'https://comm493-sentiment-analysis-app.herokuapp.com/api/classify',
           { text: this.analyzeInput },
           {
             headers: {

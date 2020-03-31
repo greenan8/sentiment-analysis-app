@@ -8,8 +8,8 @@ DEBUG = True
 
 # instantiate the app
 app = Flask(__name__,
-            static_folder = "../app/static",
-            template_folder = "../app/templates")
+            static_folder = "app/static",
+            template_folder = "app/templates")
 app.config.from_object(__name__)
 
 # enable CORS
