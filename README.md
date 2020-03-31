@@ -1,9 +1,6 @@
 # COMM 493 Sentiment Analysis App
 Utilizing customer review data, constructed a MVP fullstack dashboard for Urban Closet, a fictious fast fashion retailer.
 
-## Live App ##
-https://urban-closet.herokuapp.com/
-
 ## Objectives ##
 #### Completed Objectives #### 
 * Developed a Sentiment Analysis model with Python.
