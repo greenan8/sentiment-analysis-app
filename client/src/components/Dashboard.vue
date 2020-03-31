@@ -233,11 +233,7 @@ export default {
     },
     loadData(reload) {
       axios
-        .get(
-          'https://comm493-sentiment-analysis-app.herokuapp.com/api/'.concat(
-            this.product
-          )
-        )
+        .get('https://urban-closet.herokuapp.com/api/'.concat(this.product))
         .then(res => {
           this.db = res.data;
           this.axiosDone = true;
@@ -273,7 +269,7 @@ export default {
     getResult() {
       axios
         .post(
-          'https://comm493-sentiment-analysis-app.herokuapp.com/api/classify',
+          'https://urban-closet.herokuapp.com/api/classify',
           { text: this.analyzeInput },
           {
             headers: {
