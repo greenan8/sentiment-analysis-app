@@ -7,8 +7,6 @@ from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-
-
 df_kaggle = pd.read_csv(dir_path + '/comments-kaggle.csv')
 df_case = pd.read_csv(dir_path + '/comments.csv')
 

@@ -26,6 +26,20 @@
     </b-navbar>
 
     <div class="container is-fullhd">
+      <div class="field">
+        <b-tag
+          v-if="isTagActive"
+          type="is-danger"
+          size="is-medium"
+          closable
+          aria-close-label="Close tag"
+          @close="isTagActive = false"
+        >
+          This is an MVP for Urban Closet. The only working product is the
+          sweater.
+        </b-tag>
+      </div>
+
       <div class="columns is-multiline">
         <div
           v-for="p in filteredProducts"
@@ -49,6 +63,7 @@ export default {
   props: {},
   data() {
     return {
+      isTagActive: true,
       search: '',
       products: [
         { name: 'sweater', file: 'sweater.png' },
