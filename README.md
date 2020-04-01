@@ -22,7 +22,7 @@ Utilizing customer review data, constructed a MVP fullstack dashboard for Urban 
 * https://apexcharts.com
 
 #### AI Model: SKLearn & NLTK ####
-* scikit-learn.org
+* https://scikit-learn.org
 * https://www.nltk.org
 
 ## Model Training ##
@@ -61,9 +61,9 @@ __Step 3:__ Split into test and training sets
 df = pd.concat([df_kaggle, df_case])
 split = len(df)*7//10
 
-X_train = df.loc[:split, 'Comment'].values
+x_train = df.loc[:split, 'Comment'].values
 y_train = df.loc[:split, 'Sentiment'].values
-X_test = df.loc[split:, 'Comment'].values
+x_test = df.loc[split:, 'Comment'].values
 y_test = df.loc[split:, 'Sentiment'].values
 ```
 
@@ -75,8 +75,8 @@ __Step 4:__ Vectorize text
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(sublinear_tf=True, encoding='utf-8', decode_error='ignore')
 vectorizer.fit(X_train)
-X_train=vectorizer.transform(X_train)
-X_test=vectorizer.transform(X_test)
+x_train=vectorizer.transform(X_train)
+x_test=vectorizer.transform(X_test)
 ```
 
 __step 5__: Create a model
