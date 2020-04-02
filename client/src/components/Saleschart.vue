@@ -74,7 +74,7 @@ export default {
         return db[keyA].week - db[keyB].week;
       });
       keys.forEach(key => {
-        s.push(db[key].sales);
+        s.push(db[key].projectSales);
       });
       return s;
     }
