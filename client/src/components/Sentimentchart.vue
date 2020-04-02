@@ -45,7 +45,8 @@ export default {
         return db[keyA].week - db[keyB].week;
       });
       keys.forEach(key => {
-        c.push(db[key].shortform);
+        const date = db[key].shortform.split('-');
+        c.push(date[1] + '-' + date[2]);
       });
       return c;
     },

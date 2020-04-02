@@ -17,7 +17,7 @@
       </template>
     </b-navbar>
 
-    <div class="container is-fullhd" v-if="axiosDone">
+    <div class="container is-desktop" v-if="axiosDone">
       <h1 id="product" class="title">
         {{ product.charAt(0).toUpperCase() + product.slice(1) }}
       </h1>

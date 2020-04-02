@@ -31,8 +31,12 @@ export default {
       },
       series: [
         {
-          name: 'Sales',
-          data: this.getSeries()
+          name: 'Actual Sales',
+          data: this.getActualSeries()
+        },
+        {
+          name: 'Projected Sale',
+          data: this.getProjectedSeries()
         }
       ]
     };
@@ -45,12 +49,26 @@ export default {
         return db[keyA].week - db[keyB].week;
       });
       keys.forEach(key => {
-        c.push(db[key].shortform);
+        const date = db[key].shortform.split('-');
+        c.push(date[1] + '-' + date[2]);
       });
+      c.push('03-09');
       return c;
     },
-    getSeries() {
+    getActualSeries() {
       let s = [];
+      let db = this.db;
+      let keys = Object.keys(db).sort(function(keyA, keyB) {
+        return db[keyA].week - db[keyB].week;
+      });
+      keys.forEach(key => {
+        s.push(db[key].sales);
+      });
+      s.push(null);
+      return s;
+    },
+    getProjectedSeries() {
+      let s = [null];
       let db = this.db;
       let keys = Object.keys(db).sort(function(keyA, keyB) {
         return db[keyA].week - db[keyB].week;
