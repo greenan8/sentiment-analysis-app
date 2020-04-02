@@ -1,9 +1,6 @@
 # COMM 493 Sentiment Analysis App
 Utilizing customer review data, constructed a MVP fullstack dashboard for Urban Closet, a fictious fast fashion retailer.
 
-## Live App ##
-https://urban-closet.herokuapp.com/
-
 ## Objectives ##
 #### Completed Objectives #### 
 * Developed a Sentiment Analysis model with Python.
@@ -25,7 +22,7 @@ https://urban-closet.herokuapp.com/
 * https://apexcharts.com
 
 #### AI Model: SKLearn & NLTK ####
-* scikit-learn.org
+* https://scikit-learn.org
 * https://www.nltk.org
 
 ## Model Training ##
@@ -64,9 +61,9 @@ __Step 3:__ Split into test and training sets
 df = pd.concat([df_kaggle, df_case])
 split = len(df)*7//10
 
-X_train = df.loc[:split, 'Comment'].values
+x_train = df.loc[:split, 'Comment'].values
 y_train = df.loc[:split, 'Sentiment'].values
-X_test = df.loc[split:, 'Comment'].values
+x_test = df.loc[split:, 'Comment'].values
 y_test = df.loc[split:, 'Sentiment'].values
 ```
 
@@ -77,9 +74,9 @@ __Step 4:__ Vectorize text
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(sublinear_tf=True, encoding='utf-8', decode_error='ignore')
-vectorizer.fit(X_train)
-X_train=vectorizer.transform(X_train)
-X_test=vectorizer.transform(X_test)
+vectorizer.fit(x_train)
+x_train=vectorizer.transform(x_train)
+x_test=vectorizer.transform(x_test)
 ```
 
 __step 5__: Create a model
@@ -87,9 +84,9 @@ __step 5__: Create a model
 ```python
 from sklearn.linear_model import LogisticRegression
 model=LogisticRegression(solver='liblinear')
-model.fit(X_train,y_train)
-print('Score on training data is: '+str(model.score(X_train,y_train)))
-print('Score on testing data is: '+str(model.score(X_test,y_test)))
+model.fit(x_train,y_train)
+print('Score on training data is: '+str(model.score(x_train,y_train)))
+print('Score on testing data is: '+str(model.score(x_test,y_test)))
 ```
 __step 6__: Model persistence
 * Save model as pickle files for use from our web applicaiton
