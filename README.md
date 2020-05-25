@@ -1,5 +1,5 @@
 # COMM 493 Sentiment Analysis App
-Utilizing customer review data, constructed a MVP fullstack dashboard for Urban Closet, a fictious fast fashion retailer.
+Utilizing customer review data, constructed an MVP fullstack dashboard for Urban Closet, a fictitious fast-fashion retailer.
 
 ## Objectives ##
 #### Completed Objectives #### 
